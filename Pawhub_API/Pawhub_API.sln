@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Web
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blastic.pawhub.api", "Pawhub_API\blastic.pawhub.api.csproj", "{B92721BC-1451-4FFD-AC78-C47D2B29498B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blastic.mongodb", "..\..\blastic.mongodb\blastic.mongodb\blastic.mongodb.csproj", "{E0BA806C-3364-48AC-887F-2DF7CE2BD69E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blastic.patterns", "..\..\PawHub_core\blastic.patterns\blastic.patterns.csproj", "{6D7C7A8E-0EC7-4AA5-A5EC-2B73613DD90C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blastic.pawhub.models", "blastic.pawhub.models\blastic.pawhub.models.csproj", "{9E20CA26-56E4-485B-810A-E7E4D385B78A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_PresentationLayer", "01_PresentationLayer", "{CEBF450D-BCEC-4BAC-B2C3-98256B221E0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_ApiLayer", "02_ApiLayer", "{75D2A26A-F0DD-45F4-813F-8D210DE0100B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_ServiceLayer", "03_ServiceLayer", "{E5DBE5A1-4FAB-46D8-9C67-BF6D69A4838A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05_ModelLayer", "05_ModelLayer", "{4EB878AF-DFAA-401F-81BD-FFBD7AD4E3D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06_PatternsLayer", "06_PatternsLayer", "{06E9DE0A-3AD2-4BB4-AF9D-6F1036734BFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_RepositoryLayer", "04_RepositoryLayer", "{2FCD5F40-953D-47DC-9F59-E32CA3B110A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blastic.pawhub.repositories", "blastic.pawhub.repositories\blastic.pawhub.repositories.csproj", "{B4DC0C47-93F5-41D9-9150-86FE38DCFA68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blastic.pawhub.service.operations", "blastic.pawhub.service.operations\blastic.pawhub.service.operations.csproj", "{A94B203A-B7D3-418B-ABBA-FF55690B5DAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blastic.pawhub.service", "blastic.pawhub.service\blastic.pawhub.service.csproj", "{7A5C12DB-6113-428C-965D-A93171019007}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B92721BC-1451-4FFD-AC78-C47D2B29498B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B92721BC-1451-4FFD-AC78-C47D2B29498B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B92721BC-1451-4FFD-AC78-C47D2B29498B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B92721BC-1451-4FFD-AC78-C47D2B29498B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0BA806C-3364-48AC-887F-2DF7CE2BD69E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0BA806C-3364-48AC-887F-2DF7CE2BD69E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0BA806C-3364-48AC-887F-2DF7CE2BD69E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0BA806C-3364-48AC-887F-2DF7CE2BD69E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D7C7A8E-0EC7-4AA5-A5EC-2B73613DD90C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D7C7A8E-0EC7-4AA5-A5EC-2B73613DD90C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D7C7A8E-0EC7-4AA5-A5EC-2B73613DD90C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D7C7A8E-0EC7-4AA5-A5EC-2B73613DD90C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E20CA26-56E4-485B-810A-E7E4D385B78A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E20CA26-56E4-485B-810A-E7E4D385B78A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E20CA26-56E4-485B-810A-E7E4D385B78A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E20CA26-56E4-485B-810A-E7E4D385B78A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4DC0C47-93F5-41D9-9150-86FE38DCFA68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4DC0C47-93F5-41D9-9150-86FE38DCFA68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4DC0C47-93F5-41D9-9150-86FE38DCFA68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4DC0C47-93F5-41D9-9150-86FE38DCFA68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A94B203A-B7D3-418B-ABBA-FF55690B5DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A94B203A-B7D3-418B-ABBA-FF55690B5DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A94B203A-B7D3-418B-ABBA-FF55690B5DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A94B203A-B7D3-418B-ABBA-FF55690B5DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A5C12DB-6113-428C-965D-A93171019007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A5C12DB-6113-428C-965D-A93171019007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A5C12DB-6113-428C-965D-A93171019007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A5C12DB-6113-428C-965D-A93171019007}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B92721BC-1451-4FFD-AC78-C47D2B29498B} = {75D2A26A-F0DD-45F4-813F-8D210DE0100B}
+		{6D7C7A8E-0EC7-4AA5-A5EC-2B73613DD90C} = {06E9DE0A-3AD2-4BB4-AF9D-6F1036734BFE}
+		{E0BA806C-3364-48AC-887F-2DF7CE2BD69E} = {06E9DE0A-3AD2-4BB4-AF9D-6F1036734BFE}
+		{9E20CA26-56E4-485B-810A-E7E4D385B78A} = {4EB878AF-DFAA-401F-81BD-FFBD7AD4E3D3}
+		{A94B203A-B7D3-418B-ABBA-FF55690B5DAB} = {E5DBE5A1-4FAB-46D8-9C67-BF6D69A4838A}
+		{7A5C12DB-6113-428C-965D-A93171019007} = {E5DBE5A1-4FAB-46D8-9C67-BF6D69A4838A}
+		{B4DC0C47-93F5-41D9-9150-86FE38DCFA68} = {2FCD5F40-953D-47DC-9F59-E32CA3B110A3}
+	EndGlobalSection
+EndGlobal

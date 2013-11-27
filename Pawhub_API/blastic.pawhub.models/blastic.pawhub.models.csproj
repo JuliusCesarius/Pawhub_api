@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9E20CA26-56E4-485B-810A-E7E4D385B78A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>blastic.pawhub.models</RootNamespace>
+    <AssemblyName>blastic.pawhub.models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Breed.cs" />
+    <Compile Include="Core\Comment.cs" />
+    <Compile Include="Core\Kind.cs" />
+    <Compile Include="Core\Location.cs" />
+    <Compile Include="Core\MultilingualContent.cs" />
+    <Compile Include="Core\Picture.cs" />
+    <Compile Include="Core\User.cs" />
+    <Compile Include="LostAndFound\Abuse.cs" />
+    <Compile Include="LostAndFound\ContactInfo.cs" />
+    <Compile Include="LostAndFound\Found.cs" />
+    <Compile Include="LostAndFound\IReportDetail.cs" />
+    <Compile Include="LostAndFound\Lost.cs" />
+    <Compile Include="LostAndFound\Report.cs" />
+    <Compile Include="LostAndFound\ReportDetail.cs" />
+    <Compile Include="LostAndFound\Resque.cs" />
+    <Compile Include="LostAndFound\UserAlert.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Adoption\" />
+    <Folder Include="SocialNetwork\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\blastic.mongodb\blastic.mongodb\blastic.mongodb.csproj">
+      <Project>{e0ba806c-3364-48ac-887f-2df7ce2bd69e}</Project>
+      <Name>blastic.mongodb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PawHub_core\blastic.patterns\blastic.patterns.csproj">
+      <Project>{6d7c7a8e-0ec7-4aa5-a5ec-2b73613dd90c}</Project>
+      <Name>blastic.patterns</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
