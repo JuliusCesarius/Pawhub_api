@@ -1,6 +1,7 @@
 ﻿using blastic.mongodb.interfaces;
 using blastic.pawhub.models.LostAndFound;
 using blastic.pawhub.repositories;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace blastic.pawhub.service
             return ReportsRepository.ListAll();
         }
 
-        public Report GetReportById(string id)
+        public Report GetReportById(ObjectId id)
         {
             return ReportsRepository.LoadById(id);
         }
@@ -34,6 +35,16 @@ namespace blastic.pawhub.service
         public void Dispose()
         {
             GC.SuppressFinalize(this);
+        }
+
+        public bool SaveReport(Report report)
+        {
+            return ReportsRepository.Insert(report);
+        }
+
+        public bool UpdateReport(Report report)
+        {
+            return ReportsRepository.Update(report);
         }
     }
 }

@@ -1,8 +1,12 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿using blastic.pawhub.models.LostAndFound;
+using MongoDB.Bson.Serialization;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Routing;
 
 namespace Pawhub_API
 {
@@ -12,7 +16,7 @@ namespace Pawhub_API
         {
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "lnf/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional },
                 constraints: new { id = @"^[0-9a-f]{24}$" }
             );
@@ -21,31 +25,43 @@ namespace Pawhub_API
 
             config.Routes.MapHttpRoute(
                 name: "Reports",
-                routeTemplate: "api/{controller}",
-                defaults: new { action = "Get" }
+                routeTemplate: "lnf/{controller}",
+                defaults: new { action = "Get" }, constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+            
+            config.Routes.MapHttpRoute(
+                name: "PostReports",
+                routeTemplate: "lnf/{controller}",
+                defaults: new { action = "Post" }, constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "PutReports",
+                routeTemplate: "lnf/{controller}",
+                defaults: new { action = "Put" }, constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
             );
 
             config.Routes.MapHttpRoute(
                 name: "ReportsPaged",
-                routeTemplate: "api/{controller}/page/{pageSize}",
+                routeTemplate: "lnf/{controller}/page/{pageSize}",
                 defaults: new { controller = "Reports", action = "Get", pageSize = 0 }
             );
 
             config.Routes.MapHttpRoute(
                 name: "ReportsType",
-                routeTemplate: "api/{controller}/{type}",
+                routeTemplate: "lnf/{controller}/{type}",
                 defaults: new { controller = "Reports", action = "ReportsType", pageSize = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: "ReportsTypePaged",
-                routeTemplate: "api/{controller}/{type}/page/{pageSize}",
+                routeTemplate: "lnf/{controller}/{type}/page/{pageSize}",
                 defaults: new { controller = "Reports", action = "ReportsType", pageSize = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: "ReportsTypeById",
-                routeTemplate: "api/{controller}/{type}/{id}",
+                routeTemplate: "lnf/{controller}/{type}/{id}",
                 defaults: new { controller = "Reports", action = "ReportsType", id = RouteParameter.Optional }
             );
 
@@ -62,6 +78,14 @@ namespace Pawhub_API
 
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
+
+            BsonClassMap.RegisterClassMap<Abuse>();
+            BsonClassMap.RegisterClassMap<Found>();
+            BsonClassMap.RegisterClassMap<Lost>();
+            BsonClassMap.RegisterClassMap<Resque>();
         }
     }
 }

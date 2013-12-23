@@ -9,7 +9,9 @@ namespace blastic.pawhub.models.LostAndFound
     public class UserAlert:IBson
     {
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         [DataMember]public string _userId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
         [DataMember]public string _id
         {
             get

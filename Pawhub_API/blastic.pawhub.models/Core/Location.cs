@@ -3,7 +3,7 @@ namespace blastic.pawhub.models
 {
     public class Location
     {
-        public string latitud { get; set; }
-        public string longitud { get; set; }
+        public string lat { get; set; }
+        public string lon { get; set; }
     }
 }

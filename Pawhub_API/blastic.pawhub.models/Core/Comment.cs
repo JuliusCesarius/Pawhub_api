@@ -7,7 +7,7 @@ namespace blastic.pawhub.models
     public class Comment
     {
         public string content { get; set; }
-        public string _userId { get; set; }
+        public ObjectId _userId { get; set; }
 
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime date { get; set; }

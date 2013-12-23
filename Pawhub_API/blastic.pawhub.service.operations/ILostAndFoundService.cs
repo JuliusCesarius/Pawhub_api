@@ -1,4 +1,5 @@
 ﻿using blastic.pawhub.models.LostAndFound;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,10 @@ namespace blastic.pawhub.service
         IEnumerable<Report> GetReports(short page);
 
         [OperationContract]
-        Report GetReportById(string id);
+        Report GetReportById(ObjectId id);
 
+        [OperationContract]
+        bool SaveReport(Report report);
     }
 
 }

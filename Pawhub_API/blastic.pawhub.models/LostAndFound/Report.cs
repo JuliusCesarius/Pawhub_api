@@ -11,17 +11,18 @@ namespace blastic.pawhub.models.LostAndFound
     [DataContract]
     public class Report : IBson
     {
-        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         [DataMember]public string _id { get; set; }
-        [DataMember]public string _userId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        [DataMember]public String _userId { get; set; }
 
         [DataMember]public string description { get; set; }
         [DataMember]public string picture { get; set; }
-        [DataMember]public int linkedTo { get; set; }
+        [DataMember]public List<int> linkedTo { get; set; }
         [DataMember]public string reportCode { get; set; }
         [DataMember]public int sharedCount { get; set; }
         [DataMember]public bool solved { get; set; }
-        [DataMember]public int viewBy { get; set; }
+        [DataMember]public List<int> viewBy { get; set; }
 
 
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
@@ -30,6 +31,7 @@ namespace blastic.pawhub.models.LostAndFound
         [DataMember]public List<Comment> comments { get; set; }
         [DataMember]public List<string> alertTo { get; set; }
         [DataMember]public Location location { get; set; }
+
 
         [DataMember]public IReportDetail detail { get; set; }
     }
