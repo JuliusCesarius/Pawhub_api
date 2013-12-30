@@ -16,7 +16,7 @@ namespace blastic.pawhub.service
     {
 
         [OperationContract]
-        IEnumerable<Report> GetReports(short page);
+        IEnumerable<Report> GetReports(string type, short? pageNumber, short pageSize);
 
         [OperationContract]
         Report GetReportById(ObjectId id);

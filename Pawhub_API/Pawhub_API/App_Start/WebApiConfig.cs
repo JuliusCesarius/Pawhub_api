@@ -43,20 +43,20 @@ namespace Pawhub_API
 
             config.Routes.MapHttpRoute(
                 name: "ReportsPaged",
-                routeTemplate: "lnf/{controller}/page/{pageSize}",
-                defaults: new { controller = "Reports", action = "Get", pageSize = 0 }
+                routeTemplate: "lnf/{controller}/page/{pageNumber}",
+                defaults: new { controller = "Reports", action = "Get", pageNumber = 0 }
             );
 
             config.Routes.MapHttpRoute(
                 name: "ReportsType",
                 routeTemplate: "lnf/{controller}/{type}",
-                defaults: new { controller = "Reports", action = "ReportsType", pageSize = RouteParameter.Optional }
+                defaults: new { controller = "Reports", action = "ReportsType", pageNumber = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: "ReportsTypePaged",
-                routeTemplate: "lnf/{controller}/{type}/page/{pageSize}",
-                defaults: new { controller = "Reports", action = "ReportsType", pageSize = RouteParameter.Optional }
+                routeTemplate: "lnf/{controller}/{type}/page/{pageNumber}",
+                defaults: new { controller = "Reports", action = "ReportsType", pageNumber = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(

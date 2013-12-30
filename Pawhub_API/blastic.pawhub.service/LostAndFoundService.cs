@@ -21,10 +21,23 @@ namespace blastic.pawhub.service
             }
         }
 
-        public IEnumerable<Report> GetReports(short page)
+        public IEnumerable<Report> GetReports(string type, short? pageNumber, short pageSize)
         {
-            //TODO:Aplicar filtro por página
-            return ReportsRepository.ListAll();
+            if (pageNumber != null && pageNumber > -1)
+            {
+                if (!string.IsNullOrEmpty(type))
+                {
+                    return ((ReportsRepository)ReportsRepository).ListByPageAndType((short)pageNumber, pageSize, type);
+                }
+                else
+                {
+                    return ReportsRepository.ListByPage((short)pageNumber, pageSize);
+                }
+            }
+            else
+            {
+                return ReportsRepository.ListAll();
+            }
         }
 
         public Report GetReportById(ObjectId id)

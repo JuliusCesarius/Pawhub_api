@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Linq;
 using Pawhub_API.Models;
 using AutoMapper;
+using Pawhub_API.Models.Filters;
 
 namespace Pawhub_API.Controllers
 {
@@ -20,12 +21,13 @@ namespace Pawhub_API.Controllers
         /// </summary>
         /// <returns>Collection of Reports</returns>
         /// 
-        [System.Web.Http.AcceptVerbs("POST","GET")]
+        [System.Web.Http.AcceptVerbs("POST", "GET")]
+        [NotImplementedExceptionFilter]
         public ResponseResult<IEnumerable<Report>> Get()
         {
             using (var lostAndFoundService = new LostAndFoundService())
             {
-                var reports = lostAndFoundService.GetReports(-1);
+                var reports = lostAndFoundService.GetReports(null, -1, 0);
 
                 return new ResponseResult<IEnumerable<Report>>
                 {
@@ -40,6 +42,7 @@ namespace Pawhub_API.Controllers
         /// Gets a specific Report by Id
         /// </summary>
         /// <returns>Report object</returns>
+        [NotImplementedExceptionFilter]
         public ResponseResult<Report> Get(string id)
         {
             using (var lostAndFoundService = new LostAndFoundService())
@@ -59,17 +62,19 @@ namespace Pawhub_API.Controllers
         /// Gets all the reports paged. If the page is not supplied, it will return the page 0
         /// </summary>
         /// <returns>Collection of Reports</returns>
-        public ResponseResult<IEnumerable<Report>> Get(short pageSize)
+        [NotImplementedExceptionFilter]
+        public ResponseResult<IEnumerable<Report>> Get(short pageNumber)
         {
-            var Reports = new List<Report>();
-            for (var i = 0; i < pageSize; i++)
+            IEnumerable<Report> reports = null;
+            using (var lostAndFoundService = new LostAndFoundService())
             {
-                Reports.Add(newReport());
+                //TODO parametrizar el pageSize
+                reports = lostAndFoundService.GetReports(null, pageNumber, 20);
             }
             return new ResponseResult<IEnumerable<Report>>
             {
                 Messages = new List<string>() { "OK" },
-                Result = Reports,
+                Result = reports,
                 Succeed = true
             };
         }
@@ -80,7 +85,8 @@ namespace Pawhub_API.Controllers
         /// <returns>Id of the new report</returns>
         [HttpPost]
         [System.Web.Http.AcceptVerbs("POST")]
-        public ResponseResult<Report> Post(Report value)
+        [NotImplementedExceptionFilter]
+        public ResponseResult<Report> Post([FromBody] Report value)
         {
             using (var lostAndFoundService = new LostAndFoundService())
             {
@@ -101,6 +107,7 @@ namespace Pawhub_API.Controllers
         /// <returns>Succeed status</returns>
         [HttpPut]
         [System.Web.Http.AcceptVerbs("PUT")]
+        [NotImplementedExceptionFilter]
         public ResponseResult<Report> Put(Report value)
         {
             Report report;
@@ -136,6 +143,7 @@ namespace Pawhub_API.Controllers
         /// Delete the specified Report
         /// </summary>
         /// <returns>Succeed status</returns>
+        [NotImplementedExceptionFilter]
         public void Delete(string id)
         {
         }
@@ -145,25 +153,28 @@ namespace Pawhub_API.Controllers
         /// </summary>
         /// <returns>Collection of Reports</returns>
         [HttpGet]
+        [NotImplementedExceptionFilter]
         public ResponseResult<IEnumerable<Report>> ReportsType(string type)
         {
             return ReportsType(type, 0);
         }
 
         [HttpGet]
-        public ResponseResult<IEnumerable<Report>> ReportsType(string type, short pageSize)
+        [NotImplementedExceptionFilter]
+        public ResponseResult<IEnumerable<Report>> ReportsType(string type, short pageNumber)
         {
-            var reports = new List<Report>();
-            for (var i = 0; i < pageSize; i++)
+            using (var lostAndFoundService = new LostAndFoundService())
             {
-                reports.Add(newReport());
+                //TODO Parametrizar el pageSize
+                var reports = lostAndFoundService.GetReports(type, pageNumber, 20);
+
+                return new ResponseResult<IEnumerable<Report>>
+                {
+                    Messages = new List<string>() { "OK" },
+                    Result = reports,
+                    Succeed = true
+                };
             }
-            return new ResponseResult<IEnumerable<Report>>
-            {
-                Messages = new List<string>() { "OK" },
-                Result = reports,
-                Succeed = true
-            };
         }
 
         //[HttpGet]
@@ -174,7 +185,7 @@ namespace Pawhub_API.Controllers
 
         private Report newReport()
         {
-            return new Report { _id = ObjectId.GenerateNewId().ToString(), detail = new Abuse { name = "Abuso", dateEvent = DateTime.Now } };
+            return new Report { _id = ObjectId.GenerateNewId().ToString(), detail = new Resque { name = "Abuso", dateEvent = DateTime.Now } };
         }
     }
 }

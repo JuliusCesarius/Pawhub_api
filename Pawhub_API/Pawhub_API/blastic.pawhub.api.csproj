@@ -182,6 +182,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AutoMapperBootstrapper.cs" />
+    <Compile Include="Models\Filters\NotImplementedExceptionFilterAttribute.cs" />
     <Compile Include="Models\ResponseResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -302,6 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Binders\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
