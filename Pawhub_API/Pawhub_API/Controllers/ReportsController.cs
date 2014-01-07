@@ -144,8 +144,20 @@ namespace Pawhub_API.Controllers
         /// </summary>
         /// <returns>Succeed status</returns>
         [NotImplementedExceptionFilter]
-        public void Delete(string id)
+        public ResponseResult<bool> Delete(string id)
         {
+            bool succeed;
+            using (var lostAndFoundService = new LostAndFoundService())
+            {
+                succeed = lostAndFoundService.Delete(ObjectId.Parse(id));
+            }
+
+            return new ResponseResult<bool>
+            {
+                Messages = new List<string>() { "OK" },
+                Result = succeed,
+                Succeed = succeed
+            };
         }
 
         /// <summary>

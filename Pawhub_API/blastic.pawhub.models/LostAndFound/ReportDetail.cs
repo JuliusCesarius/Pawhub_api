@@ -13,10 +13,6 @@ namespace blastic.pawhub.models.LostAndFound
     [KnownType(typeof(Found))]
     public class ReportDetail : blastic.pawhub.models.LostAndFound.IReportDetail
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [DataMember]public string _id { get; set; }
-
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         [DataMember]public DateTime? dateEvent { get; set; }
         [DataMember]public string adress { get; set; }

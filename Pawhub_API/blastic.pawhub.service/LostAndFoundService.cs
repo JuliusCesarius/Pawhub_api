@@ -23,7 +23,8 @@ namespace blastic.pawhub.service
 
         public IEnumerable<Report> GetReports(string type, short? pageNumber, short pageSize)
         {
-            if (pageNumber != null && pageNumber > -1)
+            pageSize = pageSize > 0 ? pageSize : (short) 20;
+            if (pageNumber != null && pageNumber > 0)
             {
                 if (!string.IsNullOrEmpty(type))
                 {
@@ -36,7 +37,14 @@ namespace blastic.pawhub.service
             }
             else
             {
-                return ReportsRepository.ListAll();
+                if (string.IsNullOrEmpty(type))
+                {
+                    return ReportsRepository.ListAll();
+                }
+                else
+                {
+                    return ((ReportsRepository)ReportsRepository).ListByPageAndType(1, pageSize, type);
+                }
             }
         }
 
@@ -58,6 +66,11 @@ namespace blastic.pawhub.service
         public bool UpdateReport(Report report)
         {
             return ReportsRepository.Update(report);
+        }
+
+        public bool Delete(ObjectId objectId)
+        {
+            return ReportsRepository.Delete(objectId);
         }
     }
 }

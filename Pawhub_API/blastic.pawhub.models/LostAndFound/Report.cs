@@ -79,9 +79,9 @@ namespace blastic.pawhub.models.LostAndFound
             }
         }
 
-        [DataMember][BsonIgnore]public Resque resque { get; set; }
-        [DataMember][BsonIgnore]public Lost lost { get; set; }
-        [DataMember][BsonIgnore]public Found found { get; set; }
-        [DataMember][BsonIgnore]public Abuse abuse { get; set; }
+        [DataMember][BsonIgnore][BsonIgnoreIfNull]public Resque resque { get; set; }
+        [DataMember][BsonIgnore][BsonIgnoreIfNull]public Lost lost { get; set; }
+        [DataMember][BsonIgnore][BsonIgnoreIfNull]public Found found { get; set; }
+        [DataMember][BsonIgnore][BsonIgnoreIfNull]public Abuse abuse { get; set; }
     }
 }
