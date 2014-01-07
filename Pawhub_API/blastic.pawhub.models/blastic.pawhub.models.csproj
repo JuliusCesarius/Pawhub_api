@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Session.cs" />
+    <Compile Include="Enums\ActivityType.cs" />
     <Compile Include="Core\Breed.cs" />
     <Compile Include="Core\Comment.cs" />
     <Compile Include="Core\Kind.cs" />
@@ -53,6 +55,8 @@
     <Compile Include="Core\MultilingualContent.cs" />
     <Compile Include="Core\Picture.cs" />
     <Compile Include="Core\User.cs" />
+    <Compile Include="Core\ActivityLog.cs" />
+    <Compile Include="Enums\SocialNetwork.cs" />
     <Compile Include="LostAndFound\Abuse.cs" />
     <Compile Include="LostAndFound\ContactInfo.cs" />
     <Compile Include="LostAndFound\Found.cs" />
@@ -63,6 +67,8 @@
     <Compile Include="LostAndFound\Resque.cs" />
     <Compile Include="LostAndFound\UserAlert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register\BasicInfo.cs" />
+    <Compile Include="Register\SocialUsers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -11,11 +11,10 @@ namespace blastic.pawhub.models
         [BsonId]
         public string _id { get; set; }
 
-        public string username { get; set; }
+        public string uname { get; set; }
         public string pass { get; set; }
         public string email { get; set; }
         public string type { get; set; }
-        public bool online { get; set; }
         public short petcoins { get; set; }
 
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
@@ -24,5 +23,6 @@ namespace blastic.pawhub.models
         public Picture pic { get; set; }
         public List<string> friends { get; set; }
         public List<string> requests { get; set; }
+        public Dictionary<Int32, string> socialNetworks { get; set; }
     }
 }

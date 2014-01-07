@@ -14,7 +14,7 @@ namespace blastic.pawhub.models.LostAndFound
     public class ReportDetail : blastic.pawhub.models.LostAndFound.IReportDetail
     {
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-        [DataMember]public DateTime? dateEvent { get; set; }
+        [DataMember]public DateTime? date { get; set; }
         [DataMember]public string adress { get; set; }
         [DataMember]public string name { get; set; }
         [DataMember]public string age { get; set; }
