@@ -67,7 +67,7 @@
     <Compile Include="LostAndFound\Resque.cs" />
     <Compile Include="LostAndFound\UserAlert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Register\BasicInfo.cs" />
+    <Compile Include="Register\BasicUser.cs" />
     <Compile Include="Register\SocialUsers.cs" />
   </ItemGroup>
   <ItemGroup>

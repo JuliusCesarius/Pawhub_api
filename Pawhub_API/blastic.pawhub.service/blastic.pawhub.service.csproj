@@ -45,7 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LostAndFoundService.cs" />
+    <Compile Include="LostAndFound\UsersService.cs" />
+    <Compile Include="LostAndFound\BasicUsersService.cs" />
+    <Compile Include="LostAndFound\ReportsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

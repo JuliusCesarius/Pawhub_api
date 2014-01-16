@@ -165,6 +165,7 @@ namespace Pawhub_API.Controllers
         /// </summary>
         /// <returns>Collection of Reports</returns>
         [HttpGet]
+        [Route("lnf/{controller}/{type}")]
         [NotImplementedExceptionFilter]
         public ResponseResult<IEnumerable<Report>> ReportsType(string type)
         {
@@ -173,6 +174,7 @@ namespace Pawhub_API.Controllers
 
         [HttpGet]
         [NotImplementedExceptionFilter]
+        [Route("lnf/reports/{type}/page/{pageNumber}")]
         public ResponseResult<IEnumerable<Report>> ReportsType(string type, short pageNumber)
         {
             using (var lostAndFoundService = new LostAndFoundService())
@@ -197,7 +199,7 @@ namespace Pawhub_API.Controllers
 
         private Report newReport()
         {
-            return new Report { _id = ObjectId.GenerateNewId().ToString(), detail = new Resque { name = "Abuso", dateEvent = DateTime.Now } };
+            return new Report { _id = ObjectId.GenerateNewId().ToString(), detail = new Resque { name = "Abuso", date = DateTime.Now } };
         }
     }
 }

@@ -48,13 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ILostAndFoundService.cs" />
+    <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\blastic.mongodb\blastic.mongodb\blastic.mongodb.csproj">
       <Project>{e0ba806c-3364-48ac-887f-2df7ce2bd69e}</Project>
       <Name>blastic.mongodb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PawHub_core\blastic.patterns\blastic.patterns.csproj">
+      <Project>{6d7c7a8e-0ec7-4aa5-a5ec-2b73613dd90c}</Project>
+      <Name>blastic.patterns</Name>
     </ProjectReference>
     <ProjectReference Include="..\blastic.pawhub.models\blastic.pawhub.models.csproj">
       <Project>{9e20ca26-56e4-485b-810a-e7e4d385b78a}</Project>

@@ -108,5 +108,22 @@ namespace MvcApplication1.Areas.HelpPage
 
             return type.FullName;
         }
+
+
+        public string GetDocumentation(HttpControllerDescriptor controllerDescriptor)
+        {
+            var apiDocumentation = controllerDescriptor.GetCustomAttributes<ApiDocumentationAttribute>().FirstOrDefault();
+            if (apiDocumentation != null)
+            {
+                return apiDocumentation.Description;
+            }
+
+            return String.Empty;
+        }
+
+        public string GetResponseDocumentation(HttpActionDescriptor actionDescriptor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

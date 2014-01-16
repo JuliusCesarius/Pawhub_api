@@ -8,7 +8,7 @@ namespace blastic.pawhub.models.LostAndFound
         string adress { get; set; }
         string age { get; set; }
         string characteristics { get; set; }
-        DateTime? dateEvent { get; set; }
+        DateTime? date { get; set; }
         string name { get; set; }
         List<Picture> pics { get; set; }
     }

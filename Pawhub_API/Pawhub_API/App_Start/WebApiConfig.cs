@@ -14,57 +14,34 @@ namespace Pawhub_API
     {
         public static void Register(HttpConfiguration config)
         {
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "lnf/{controller}/{id}",
+                routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional },
                 constraints: new { id = @"^[0-9a-f]{24}$" }
             );
 
+            config.Routes.MapHttpRoute(
+                name: "PagedGet",
+                routeTemplate: "api/{controller}/page/{pageNumber}",
+                defaults: new { action = "Get", pageNumber = 0 }
+            );
+
             #region Routing de Reports
 
-            config.Routes.MapHttpRoute(
-                name: "Reports",
-                routeTemplate: "lnf/{controller}",
-                defaults: new { action = "Get" }, constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
-            );
+            //config.Routes.MapHttpRoute(
+            //    name: "ReportsType",
+            //    routeTemplate: "lnf/reports/{type}",
+            //    defaults: new { controller = "Reports", action = "ReportsType", pageNumber = RouteParameter.Optional }
+            //);
+
+            //config.Routes.MapHttpRoute(
+            //    name: "ReportsTypePaged",
+            //    routeTemplate: "lnf/reports/{type}/page/{pageNumber}",
+            //    defaults: new { controller = "Reports", action = "ReportsType", pageNumber = RouteParameter.Optional }
+            //);
             
-            config.Routes.MapHttpRoute(
-                name: "PostReports",
-                routeTemplate: "lnf/{controller}",
-                defaults: new { action = "Post" }, constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "PutReports",
-                routeTemplate: "lnf/{controller}",
-                defaults: new { action = "Put" }, constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ReportsPaged",
-                routeTemplate: "lnf/{controller}/page/{pageNumber}",
-                defaults: new { controller = "Reports", action = "Get", pageNumber = 0 }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ReportsType",
-                routeTemplate: "lnf/{controller}/{type}",
-                defaults: new { controller = "Reports", action = "ReportsType", pageNumber = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ReportsTypePaged",
-                routeTemplate: "lnf/{controller}/{type}/page/{pageNumber}",
-                defaults: new { controller = "Reports", action = "ReportsType", pageNumber = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ReportsTypeById",
-                routeTemplate: "lnf/{controller}/{type}/{id}",
-                defaults: new { controller = "Reports", action = "ReportsType", id = RouteParameter.Optional }
-            );
-
             #endregion
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.

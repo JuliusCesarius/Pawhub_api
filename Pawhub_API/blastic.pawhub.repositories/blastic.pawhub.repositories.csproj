@@ -49,8 +49,9 @@
   <ItemGroup>
     <Compile Include="KindRepository.cs" />
     <Compile Include="UserAlert.cs" />
-    <Compile Include="UserRepository.cs" />
-    <Compile Include="ReportRepository.cs" />
+    <Compile Include="UsersRepository.cs" />
+    <Compile Include="BasicUsersRepository.cs" />
+    <Compile Include="ReportsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
