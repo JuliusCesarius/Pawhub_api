@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace blastic.pawhub.models.Core
 {
-    public class Session: IBson
+    public class Session: IBsonDocument
     {
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonId]

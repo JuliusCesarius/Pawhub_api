@@ -9,8 +9,10 @@ namespace blastic.pawhub.models.LostAndFound
 {
     [BsonIgnoreExtraElements]
     [DataContract]
-    public class Report : IBson
+    public class Report : IBsonDocument
     {
+        private List<Comment> _comments;
+
         [BsonRepresentation(BsonType.ObjectId)]
         [DataMember]public string _id { get; set; }
         [BsonRepresentation(BsonType.ObjectId)]
@@ -29,10 +31,11 @@ namespace blastic.pawhub.models.LostAndFound
         [DataMember]public Location location { get; set; }
         
         [DataMember]public List<int> linkedTo { get; set; }
-        [DataMember]public List<int> viewBy { get; set; }
+        [DataMember]public List<string> viewedBy { get; set; }
 
         [DataMember]public List<string> alertTo { get; set; }
-        [DataMember]public List<Comment> comments { get; set; }
+
+        [DataMember] public List<Comment> comments { get; set; }
 
         [DataMember]public IReportDetail detail
         {

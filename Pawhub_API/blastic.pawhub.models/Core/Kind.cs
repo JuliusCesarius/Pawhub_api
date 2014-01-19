@@ -2,10 +2,11 @@
 using blastic.mongodb.interfaces;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using System;
 
 namespace blastic.pawhub.models.Core
 {
-    public class Kind:IBson
+    public class Kind:IBsonDocument
     {        
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonId]
@@ -15,5 +16,7 @@ namespace blastic.pawhub.models.Core
         public MultilingualContent name { get; set; }
         public MultilingualContent description { get; set; }
 
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime date { get; set; }
     }
 }

@@ -18,13 +18,13 @@ namespace blastic.pawhub.service
         IObjectRepository<T> repository { get; }
 
         [OperationContract]
-        IEnumerable<T> Get(short? pageNumber, short pageSize);
+        IEnumerable<T> Get(int? pageNumber, int pageSize);
 
         [OperationContract]
-        T GetById(ObjectId id);
+        T GetById(string id);
 
         [OperationContract]
-        bool Save(T report);
+        bool Save(T obj);
     }
 
 }

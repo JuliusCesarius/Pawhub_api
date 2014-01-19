@@ -156,6 +156,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AutoMapperBootstrapper.cs" />
+    <Compile Include="Models\Enums\ErrorCodes.cs" />
     <Compile Include="Models\Filters\NotImplementedExceptionFilterAttribute.cs" />
     <Compile Include="Models\ResponseResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

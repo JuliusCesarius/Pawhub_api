@@ -6,16 +6,17 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace blastic.pawhub.models
 {
-    public class User : IBson
+    public class User : IBsonDocument
     {
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }
 
         public string uname { get; set; }
         public string pass { get; set; }
         public string email { get; set; }
         public string type { get; set; }
-        public short petcoins { get; set; }
+        public int petcoins { get; set; }
 
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime date { get; set; }

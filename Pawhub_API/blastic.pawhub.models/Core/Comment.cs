@@ -8,11 +8,19 @@ namespace blastic.pawhub.models
     [DataContract]
     public class Comment
     {
+
+        [BsonId]
+        [DataMember]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string _id { get; set; }
+        
+        [DataMember]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string _userId { get; set; }
+
         [DataMember]
         public string content { get; set; }
-        [BsonRepresentation(BsonType.ObjectId)]
-        [DataMember]
-        public string _userId { get; set; }
+
         [DataMember]
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime date { get; set; }

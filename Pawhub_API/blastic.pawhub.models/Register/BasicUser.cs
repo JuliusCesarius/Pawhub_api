@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace blastic.pawhub.models.Register
 {
-    public class BasicUser:IBson
+    public class BasicUser:IBsonDocument
     {
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonId]
@@ -18,5 +18,7 @@ namespace blastic.pawhub.models.Register
         public string userLastName { get; set; }
         public string userEmail { get; set; }
         public string userCity { get; set; }
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime date { get; set; }
     }
 }

@@ -43,12 +43,14 @@ namespace Pawhub_API.Controllers
         /// Gets a specific Report by Id
         /// </summary>
         /// <returns>Report object</returns>
+        [HttpGet]
         [NotImplementedExceptionFilter]
+        [Route("lnf/reports/{id}")]
         public ResponseResult<Report> Get(string id)
         {
             using (var reportsService = new ReportsService())
             {
-                var report = reportsService.GetById(ObjectId.Parse(id));
+                var report = reportsService.GetById(id);
 
                 return new ResponseResult<Report>
                 {
@@ -64,7 +66,7 @@ namespace Pawhub_API.Controllers
         /// </summary>
         /// <returns>Collection of Reports</returns>
         [NotImplementedExceptionFilter]
-        public ResponseResult<IEnumerable<Report>> Get(short pageNumber)
+        public ResponseResult<IEnumerable<Report>> Get(int pageNumber)
         {
             IEnumerable<Report> reports = null;
             using (var reportsService = new ReportsService())
@@ -84,8 +86,9 @@ namespace Pawhub_API.Controllers
         /// Register a new Report
         /// </summary>
         /// <returns>Id of the new report</returns>
-        [System.Web.Http.AcceptVerbs("POST")]
+        [HttpPost]
         [NotImplementedExceptionFilter]
+        [Route("lnf/reports/")]
         public ResponseResult<Report> Post([FromBody] Report value)
         {
             using (var reportsService = new ReportsService())
@@ -112,7 +115,7 @@ namespace Pawhub_API.Controllers
             var response = Request.CreateResponse<Report>(HttpStatusCode.Created, value);
             using (var reportsService = new ReportsService())
             {
-                report = reportsService.GetById(ObjectId.Parse(value._id));
+                report = reportsService.GetById(value._id);
                 if (report != null)
                 {
                     report = Mapper.Map(value, report);
@@ -147,7 +150,7 @@ namespace Pawhub_API.Controllers
             bool succeed;
             using (var reportsService = new ReportsService())
             {
-                succeed = reportsService.Delete(ObjectId.Parse(id));
+                succeed = reportsService.Delete(id);
             }
 
             return new ResponseResult<bool>
@@ -172,8 +175,8 @@ namespace Pawhub_API.Controllers
 
         [HttpGet]
         [NotImplementedExceptionFilter]
-        [Route("lnf/reports/{type}/page/{pageNumber}")]
-        public ResponseResult<IEnumerable<Report>> ReportsType(string type, short pageNumber)
+        [Route("lnf/reports/{type}/page/{pageNumber:int:min(1)?}")]
+        public ResponseResult<IEnumerable<Report>> ReportsType(string type, int pageNumber)
         {
             using (var reportsService = new ReportsService())
             {
@@ -187,66 +190,83 @@ namespace Pawhub_API.Controllers
                     Succeed = true
                 };
             }
-        }
+        }   
 
-        [HttpPost]
+        [HttpGet]
         [NotImplementedExceptionFilter]
-        [Route("lnf/reports/setAlert/{id}/{userId}/{active}")]
-        public ResponseResult<bool> SetAlert(string id, string userId, bool active)
+        [Route("lnf/reports/user/{id}/{pageNumber:int:min(1)?}")]
+        public ResponseResult<IEnumerable<Report>> GetByUserId(string id, int pageNumber=1)
         {
-            bool succeed;
+            
+            IEnumerable<Report> reports;
             using (var reportsService = new ReportsService())
             {
-                succeed = reportsService.Delete(ObjectId.Parse(id));
+                reports = reportsService.GetByUserId(id, pageNumber);
             }
 
-            return new ResponseResult<bool>
+            return new ResponseResult<IEnumerable<Report>>
             {
-                Messages = new List<string>() { "Metodo aún no implementado" },
-                Result = active,
-                Succeed = succeed
+                Result = reports,
+                Succeed = true
             };
         }
 
         [HttpPost]
         [NotImplementedExceptionFilter]
         [Route("lnf/reports/comment/{id}")]
-        public ResponseResult<Comment> SetAlert(string id, [FromBody]Comment comment)
+        public ResponseResult<Comment> Comment(string id, [FromBody]Comment comment)
         {
-            bool succeed;
+            Comment result;
             using (var reportsService = new ReportsService())
             {
-                succeed = reportsService.Delete(ObjectId.Parse(id));
+                result = reportsService.Comment(id, comment);
                 comment.date = DateTime.UtcNow;
             }
 
             return new ResponseResult<Comment>
             {
-                Messages = new List<string>() { "Metodo aún no implementado" },
-                Result = comment,
-                Succeed = succeed
+                Result = result,
+                Succeed = true
             };
         }
 
-        //[HttpPost]
-        //[NotImplementedExceptionFilter]
-        //[Route("lnf/reports/comments/{id}")]
-        //public ResponseResult<Comment> SetAlert(string id, [FromBody]Comment comment)
-        //{
-        //    bool succeed;
-        //    using (var reportsService = new ReportsService())
-        //    {
-        //        succeed = reportsService.Delete(ObjectId.Parse(id));
-        //        comment.date = DateTime.UtcNow;
-        //    }
+        [HttpPost]
+        [NotImplementedExceptionFilter]
+        [Route("lnf/reports/setAlert/{id}")]
+        public ResponseResult<UserAlert> SetAlert(string id, [FromBody]UserAlert userAlert)
+        {
+            UserAlert result;
 
-        //    return new ResponseResult<Comment>
-        //    {
-        //        Messages = new List<string>() { "Metodo aún no implementado" },
-        //        Result = comment,
-        //        Succeed = succeed
-        //    };
-        //}
+            using (var reportsService = new ReportsService())
+            {
+                result = reportsService.SetAlert(id, userAlert);
+            }
+
+            return new ResponseResult<UserAlert>
+            {
+                Result = result,
+                Succeed = true
+            };
+        }
+
+        [HttpPost]
+        [NotImplementedExceptionFilter]
+        [Route("lnf/reports/setViewed/{id}")]
+        public ResponseResult<long> SetViewed(string id, [FromBody]string userId)
+        {
+            long result;
+
+            using (var reportsService = new ReportsService())
+            {
+                result = reportsService.SetView(id, userId);
+            }
+
+            return new ResponseResult<long>
+            {
+                Result = result,
+                Succeed = true
+            };
+        }
 
         public void Dispose()
         {

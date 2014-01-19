@@ -24,12 +24,12 @@ namespace blastic.pawhub.service.lostAndFound
             }
         }
 
-        public IEnumerable<BasicUser> Get(short? pageNumber, short pageSize)
+        public IEnumerable<BasicUser> Get(int? pageNumber, int pageSize)
         {
-            pageSize = pageSize > 0 ? pageSize : (short)20;
+            pageSize = pageSize > 0 ? pageSize : (int)20;
             if (pageNumber != null && pageNumber > 0)
             {
-                return repository.ListByPage((short)pageNumber, pageSize);
+                return repository.ListByPage((int)pageNumber, pageSize);
             }
             else
             {
@@ -37,7 +37,7 @@ namespace blastic.pawhub.service.lostAndFound
             }
         }
 
-        public BasicUser GetById(ObjectId id)
+        public BasicUser GetById(string id)
         {
             return repository.LoadById(id);
         }
@@ -57,7 +57,7 @@ namespace blastic.pawhub.service.lostAndFound
             return repository.Update(basicUser);
         }
 
-        public bool Delete(ObjectId objectId)
+        public bool Delete(string objectId)
         {
             return repository.Delete(objectId);
         }
