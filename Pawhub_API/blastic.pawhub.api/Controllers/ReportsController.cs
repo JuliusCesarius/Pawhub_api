@@ -22,8 +22,9 @@ namespace Pawhub_API.Controllers
         /// Gets all the reports paged. If the page is not supplied, it will return the page 0
         /// </summary>
         /// <returns>Collection of Reports</returns>
-        /// 
+        [HttpGet]
         [NotImplementedExceptionFilter]
+        [Route("lnf/reports")]
         public ResponseResult<IEnumerable<Report>> Get()
         {
             using (var reportsService = new ReportsService())

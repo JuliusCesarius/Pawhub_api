@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\PicsService.cs" />
     <Compile Include="LostAndFound\UsersService.cs" />
     <Compile Include="LostAndFound\BasicUsersService.cs" />
     <Compile Include="LostAndFound\ReportsService.cs" />

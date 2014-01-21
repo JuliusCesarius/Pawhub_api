@@ -64,21 +64,24 @@ namespace blastic.pawhub.models.LostAndFound
             }
             set
             {
-                if (value.GetType() == typeof(Resque))
+                if (value != null)
                 {
-                    resque = value as Resque;
-                }
-                else if (value.GetType() == typeof(Lost))
-                {
-                    lost = value as Lost;
-                }
-                else if (value.GetType() == typeof(Found))
-                {
-                    found = value as Found;
-                }
-                else if (value.GetType() == typeof(Abuse))
-                {
-                    abuse = value as Abuse;
+                    if (value.GetType() == typeof(Resque))
+                    {
+                        resque = value as Resque;
+                    }
+                    else if (value.GetType() == typeof(Lost))
+                    {
+                        lost = value as Lost;
+                    }
+                    else if (value.GetType() == typeof(Found))
+                    {
+                        found = value as Found;
+                    }
+                    else if (value.GetType() == typeof(Abuse))
+                    {
+                        abuse = value as Abuse;
+                    }
                 }
             }
         }
