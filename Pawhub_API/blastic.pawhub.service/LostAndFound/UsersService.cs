@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace blastic.pawhub.service.lostAndFound
+namespace blastic.pawhub.service.core
 {
     public class UsersService : IService<User>
     {

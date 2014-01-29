@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,6 +51,7 @@
   <ItemGroup>
     <Compile Include="KindRepository.cs" />
     <Compile Include="UserAlert.cs" />
+    <Compile Include="PicturesRepository.cs" />
     <Compile Include="UsersRepository.cs" />
     <Compile Include="BasicUsersRepository.cs" />
     <Compile Include="ReportsRepository.cs" />

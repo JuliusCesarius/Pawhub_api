@@ -2,10 +2,11 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System.Runtime.Serialization;
+using blastic.mongodb.interfaces;
 
 namespace blastic.pawhub.models
 {
-    public class Picture
+    public class Picture:IBsonDocument
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }

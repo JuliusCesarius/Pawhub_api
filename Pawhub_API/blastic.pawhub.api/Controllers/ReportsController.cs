@@ -11,7 +11,7 @@ using System.Linq;
 using Pawhub_API.Models;
 using AutoMapper;
 using Pawhub_API.Models.Filters;
-using blastic.pawhub.service.lostAndFound;
+using blastic.pawhub.service.core;
 using blastic.pawhub.models;
 
 namespace Pawhub_API.Controllers
@@ -191,7 +191,7 @@ namespace Pawhub_API.Controllers
                     Succeed = true
                 };
             }
-        }   
+        }
 
         [HttpGet]
         [NotImplementedExceptionFilter]

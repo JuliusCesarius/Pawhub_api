@@ -1,6 +1,6 @@
 ﻿using blastic.pawhub.models.Register;
 using blastic.pawhub.service;
-using blastic.pawhub.service.lostAndFound;
+using blastic.pawhub.service.core;
 using Pawhub_API.Models;
 using Pawhub_API.Models.Filters;
 using System;

@@ -7,6 +7,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace blastic.pawhub.repositories
@@ -18,24 +19,20 @@ namespace blastic.pawhub.repositories
         {
         }
 
-        public string GetPirturePath(string id)
+        public string GetPath(string id)
         {
             Succeed = false;
             var query = Query<Report>.EQ(x => x._id, id);
             var cursor = Collection.Find(query).SetLimit(1).SetFields(Fields.Include("path"));
 
-            Succeed = LastWriteConcernResult.Ok;
-            if (LastWriteConcernResult.HasLastErrorMessage)
-            {
-                AddValidationMessage(enumMessageType.UnhandledException, LastWriteConcernResult.ErrorMessage);
-            }
+            Succeed = true;
 
             if (cursor.Count() <= 0)
             {
-                throw new Exception("Image not found");
+                throw new Exception("Image not found in DB");
             }
-                       
-            return cursor.GetEnumerator().MoveNext().ToString();
+
+            return cursor.First().path;
         }
     }
 }

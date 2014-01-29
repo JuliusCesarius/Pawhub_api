@@ -79,5 +79,6 @@ namespace blastic.pawhub.repositories
 
             return Update(updateBuilder, query);
         }
+        
     }
 }

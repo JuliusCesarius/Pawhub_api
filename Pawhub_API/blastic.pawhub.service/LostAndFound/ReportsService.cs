@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace blastic.pawhub.service.lostAndFound
+namespace blastic.pawhub.service.core
 {
     public class ReportsService : IService<Report>
     {
@@ -92,7 +92,7 @@ namespace blastic.pawhub.service.lostAndFound
         public Comment Comment(string id, Comment comment)
         {
             //Verifica si existe el reporte y si está inicializado el arreglo de comentarios
-            Report report = ((ReportsRepository)repository).GetFields(id,new string[] { "comments" }).FirstOrDefault();
+            Report report = repository.GetFields(id,new string[] { "comments" }).FirstOrDefault();
             comment._id = ObjectId.GenerateNewId().ToString();
             comment.date = DateTime.UtcNow;
 

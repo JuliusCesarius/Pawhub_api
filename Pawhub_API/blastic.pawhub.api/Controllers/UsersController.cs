@@ -10,7 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using blastic.pawhub.api.Controllers;
-using blastic.pawhub.service.lostAndFound;
+using blastic.pawhub.service.core;
 
 namespace Pawhub_API.Controllers
 {
