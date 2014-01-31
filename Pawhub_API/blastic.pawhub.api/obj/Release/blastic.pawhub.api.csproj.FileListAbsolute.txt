@@ -1,4 +1,3 @@
-C:\Users\Julio\Documents\GitHub\Pawhub_api\Pawhub_API\blastic.pawhub.api\obj\Release\blastic.pawhub.api.csprojResolveAssemblyReference.cache
 C:\Users\Julio\Documents\GitHub\Pawhub_api\Pawhub_API\blastic.pawhub.api\bin\AutoMapper.Net4.dll
 C:\Users\Julio\Documents\GitHub\Pawhub_api\Pawhub_API\blastic.pawhub.api\bin\blastic.pawhub.api.dll.config
 C:\Users\Julio\Documents\GitHub\Pawhub_api\Pawhub_API\blastic.pawhub.api\bin\blastic.pawhub.api.dll
@@ -50,5 +49,6 @@ C:\Users\Julio\Documents\GitHub\Pawhub_api\Pawhub_API\blastic.pawhub.api\bin\Sys
 C:\Users\Julio\Documents\GitHub\Pawhub_api\Pawhub_API\blastic.pawhub.api\bin\Antlr3.Runtime.pdb
 C:\Users\Julio\Documents\GitHub\Pawhub_api\Pawhub_API\blastic.pawhub.api\bin\blastic.patterns.pdb
 C:\Users\Julio\Documents\GitHub\Pawhub_api\Pawhub_API\blastic.pawhub.api\bin\EntityFramework.xml
+C:\Users\Julio\Documents\GitHub\Pawhub_api\Pawhub_API\blastic.pawhub.api\obj\Release\blastic.pawhub.api.csprojResolveAssemblyReference.cache
 C:\Users\Julio\Documents\GitHub\Pawhub_api\Pawhub_API\blastic.pawhub.api\obj\Release\blastic.pawhub.api.dll
 C:\Users\Julio\Documents\GitHub\Pawhub_api\Pawhub_API\blastic.pawhub.api\obj\Release\blastic.pawhub.api.pdb

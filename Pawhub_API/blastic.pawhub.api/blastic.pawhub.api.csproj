@@ -127,6 +127,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="data\pics\albums\" />
+    <Folder Include="data\pics\pets\" />
+    <Folder Include="data\pics\reports\" />
+    <Folder Include="data\pics\temp\" />
+    <Folder Include="data\pics\users\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />

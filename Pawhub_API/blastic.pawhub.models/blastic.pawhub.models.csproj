@@ -56,6 +56,7 @@
     <Compile Include="Core\Picture.cs" />
     <Compile Include="Core\User.cs" />
     <Compile Include="Core\ActivityLog.cs" />
+    <Compile Include="Enums\PicType.cs" />
     <Compile Include="Enums\SocialNetwork.cs" />
     <Compile Include="LostAndFound\Abuse.cs" />
     <Compile Include="LostAndFound\ContactInfo.cs" />
