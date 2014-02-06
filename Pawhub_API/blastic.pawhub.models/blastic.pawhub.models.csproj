@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Session.cs" />
+    <Compile Include="Enums\PicSize.cs" />
+    <Compile Include="Enums\ReportKind.cs" />
     <Compile Include="Enums\ActivityType.cs" />
     <Compile Include="Core\Breed.cs" />
     <Compile Include="Core\Comment.cs" />

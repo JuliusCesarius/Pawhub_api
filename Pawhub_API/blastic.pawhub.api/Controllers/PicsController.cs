@@ -21,14 +21,17 @@ namespace blastic.pawhub.api.Controllers
     {
         [HttpGet]
         [NotImplementedExceptionFilter]
-        [Route("pics/{size}/{density:int?}/{id?}")]
-        public HttpResponseMessage Get(string size, int density, string id)
+        [Route("pics/{size}/{id?}")]
+        public HttpResponseMessage Get(string size, string id)
         {
             using (var picturesService = new PicturesService())
             {
                 FileStream fileStream = null;
                 HttpResponseMessage result ;
-                using (picturesService.GetImageStream(size, density, id, out fileStream)){
+                string rootPath = HttpContext.Current.Server.MapPath("~/data/pics");
+                PicSize picSize = (PicSize)Enum.Parse(typeof(PicSize), size);
+                using (picturesService.GetImageStream(rootPath, picSize,id, out fileStream))
+                {
                     if (fileStream.CanRead)
                     {
                         int length = (int)fileStream.Length;
@@ -72,14 +75,15 @@ namespace blastic.pawhub.api.Controllers
 
             string path = HttpContext.Current.Server.MapPath("~/data/pics");
             string tempPath = path + "\\temp";
-            using (var picturesService = new PicturesService())
+            try
             {
-                picturesService.EnsureDirectory(path + "\\temp");
-                var provider = new MultipartFormDataStreamProvider(tempPath);
-                MultipartFileData fileData = null;
-
-                try
+                using (var picturesService = new PicturesService())
                 {
+                    picturesService.EnsureDirectory(path + "\\temp");
+                    var provider = new MultipartFormDataStreamProvider(tempPath);
+                    MultipartFileData fileData = null;
+
+
                     // Read the form data and save in the path.
                     await Request.Content.ReadAsMultipartAsync(provider);
 
@@ -95,35 +99,37 @@ namespace blastic.pawhub.api.Controllers
                     }
                     //var fileContent = provider.GetStream(provider.Contents.First(), provider.Contents.First().Headers);
                     temPath = fileData.LocalFileName;
-                    imageId = picturesService.Save(picType, id, fileData.LocalFileName, path);
-
-                }
-                catch (System.Exception e)
-                {
-                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
-                }
-                finally
-                {
-                    //deletes the temp file
-                    if (temPath != null && File.Exists(temPath))
-                    {
-                        //TODO:Checar por qué se queda colgado y no se puede eliminar
-                        //picturesService.DeleteFile(temPath);
-                    }
-                }
-                if (!string.IsNullOrEmpty(imageId))
-                {
-                    HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
-                    imageId = Newtonsoft.Json.JsonConvert.SerializeObject(new { id = imageId });
-                    result.Content = new ObjectContent(imageId.GetType(), imageId, GlobalConfiguration.Configuration.Formatters.JsonFormatter);
-                    return result;
-                    //return Request.CreateResponse(HttpStatusCode.OK);
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                    imageId = picturesService.Save(picType, id, fileData.LocalFileName, path);                    
                 }
             }
+            catch (System.Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+            }
+            finally
+            {
+                //deletes the temp file
+                if (temPath != null && File.Exists(temPath))
+                {
+                    using (var picturesService = new PicturesService())
+                    {
+                        picturesService.DeleteFile(temPath);
+                    }
+                }
+            }
+            if (!string.IsNullOrEmpty(imageId))
+            {
+                HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+                imageId = Newtonsoft.Json.JsonConvert.SerializeObject(new { id = imageId });
+                result.Content = new ObjectContent(imageId.GetType(), imageId, GlobalConfiguration.Configuration.Formatters.JsonFormatter);
+                return result;
+                //return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+
         }
 
     }

@@ -55,20 +55,24 @@ namespace blastic.pawhub.service.core
 
         public Picture GetById(string id)
         {
-            throw new NotImplementedException();
+            return repository.LoadById(id);
         }
 
-        public IDisposable GetImageStream(string size, int density, string id, out FileStream fileStream)
+        public IDisposable GetImageStream(string rootPath, PicSize size, string id, out FileStream fileStream)
         {
-            var path = ((PicturesRepository)repository).GetPath(id);
-            //TODO: Terminar de armar la ruta según los parámetros (size, debería ser enum)
-            //path += "\\" + id + ".jpg";
-            if (!File.Exists(path))
+            var picture = this.GetById(id);
+            if (picture == null)
+            {
+                throw new FileNotFoundException("Pic not found");
+            }
+            var path = "\\" + picture.type + "\\" + size.ToString() + "\\" + picture._id;
+
+            if (!File.Exists(rootPath + path))
             {
                 //TODO: No Mandar info de la imagen (solo para loggeo)
                 throw new FileNotFoundException("File " + path + " not found");
             }
-            fileStream = File.OpenRead(path);
+            fileStream = File.OpenRead(rootPath + path);
             return fileStream;
         }
 
@@ -111,42 +115,43 @@ namespace blastic.pawhub.service.core
                 throw new Exception("No se pudo guardar");
             }
 
-            var fileStream = File.OpenRead(tempFile);
+            using (var fileStream = File.OpenRead(tempFile))
+            {
 
-            var origPath = path + "\\" + type.ToString() + "\\orig";
-            var smallPath = path + "\\" + type.ToString() + "\\small";
-            var midPath = path + "\\" + type.ToString() + "\\mid";
-            var bigPath = path + "\\" + type.ToString() + "\\big";
+                var origPath = path + "\\" + type.ToString() + "\\" + PicSize.orig.ToString();
+                var smallPath = path + "\\" + type.ToString() + "\\" + PicSize.small.ToString();
+                var midPath = path + "\\" + type.ToString() + "\\" + PicSize.mid.ToString();
+                var bigPath = path + "\\" + type.ToString() + "\\" + PicSize.big.ToString();
 
-            var fileName = "\\" + picture._referenceId;
+                var fileName = "\\" + picture._id;
 
-            EnsureDirectory(origPath);
-            EnsureDirectory(smallPath);
-            EnsureDirectory(midPath);
-            EnsureDirectory(bigPath);
+                EnsureDirectory(origPath);
+                EnsureDirectory(smallPath);
+                EnsureDirectory(midPath);
+                EnsureDirectory(bigPath);
 
-            //Saves the file
-            //using (Stream file = File.Create(origPath + fileName))
-            //{
-            //    FileStreamHelper.CopyStream(fileStream, file);
-            //}
+                //Saves the file
+                //using (Stream file = File.Create(origPath + fileName))
+                //{
+                //    FileStreamHelper.CopyStream(fileStream, file);
+                //}
 
-            var bitmap = new Bitmap(fileStream);
-            var imageHandler = new ImageHandler();
+                var bitmap = new Bitmap(fileStream);
+                var imageHandler = new ImageHandler();
 
-            //origin
-            imageHandler.Save(bitmap, 1900, 1900, 90, origPath + fileName);
-            //small
-            imageHandler.Save(bitmap, 50, 50, 60, smallPath + fileName);
-            //mid
-            imageHandler.Save(bitmap, 700, 700, 60, midPath + fileName);
-            //big
-            imageHandler.Save(bitmap, 1024, 1024, 60, bigPath + fileName);
+                //origin
+                imageHandler.Save(bitmap, 1900, 1900, 90, origPath + fileName);
+                //small
+                imageHandler.Save(bitmap, 50, 50, 60, smallPath + fileName);
+                //mid
+                imageHandler.Save(bitmap, 500, 500, 60, midPath + fileName);
+                //big
+                imageHandler.Save(bitmap, 1024, 1024, 60, bigPath + fileName);
 
-            picture.path = fileName;
-            this.Update(picture);
-            return picture._id;
-
+                picture.path = fileName;
+                this.Update(picture);
+                return picture._id;
+            }
         }
     }
 }

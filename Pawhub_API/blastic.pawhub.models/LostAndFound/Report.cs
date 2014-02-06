@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Runtime.Serialization;
+using blastic.pawhub.models.enums;
 
 namespace blastic.pawhub.models.LostAndFound
 {
@@ -12,6 +13,7 @@ namespace blastic.pawhub.models.LostAndFound
     public class Report : IBsonDocument
     {
         private List<Comment> _comments;
+        private ReportKind _reportKind;
 
         [BsonRepresentation(BsonType.ObjectId)]
         [DataMember]public string _id { get; set; }
@@ -19,6 +21,17 @@ namespace blastic.pawhub.models.LostAndFound
         [DataMember]public String _userId { get; set; }
 
         [DataMember]public int kind { get; set; }
+        [DataMember]public string type
+        {
+            get
+            {
+                return _reportKind.ToString();
+            }
+            set
+            {
+                _reportKind = (ReportKind)Enum.Parse(typeof(ReportKind), value.ToLower());
+            }
+        }
         [DataMember]public string description { get; set; }
         [DataMember]public string reportCode { get; set; }
         [DataMember]public int sharedCount { get; set; }
@@ -86,9 +99,9 @@ namespace blastic.pawhub.models.LostAndFound
             }
         }
 
-        [DataMember][BsonIgnore][BsonIgnoreIfNull]public Resque resque { get; set; }
-        [DataMember][BsonIgnore][BsonIgnoreIfNull]public Lost lost { get; set; }
-        [DataMember][BsonIgnore][BsonIgnoreIfNull]public Found found { get; set; }
-        [DataMember][BsonIgnore][BsonIgnoreIfNull]public Abuse abuse { get; set; }
+        [DataMember][BsonIgnore]public Resque resque { get; set; }
+        [DataMember][BsonIgnore]public Lost lost { get; set; }
+        [DataMember][BsonIgnore]public Found found { get; set; }
+        [DataMember][BsonIgnore]public Abuse abuse { get; set; }
     }
 }
