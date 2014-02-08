@@ -10,6 +10,6 @@ namespace blastic.pawhub.models.LostAndFound
         string characteristics { get; set; }
         DateTime? date { get; set; }
         string name { get; set; }
-        List<Picture> pics { get; set; }
+        List<string> pics { get; set; }
     }
 }

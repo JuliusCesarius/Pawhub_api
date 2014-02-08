@@ -13,12 +13,28 @@ namespace blastic.pawhub.models.LostAndFound
     [KnownType(typeof(Found))]
     public class ReportDetail : blastic.pawhub.models.LostAndFound.IReportDetail
     {
+        private List<string> _pics;
+
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         [DataMember]public DateTime? date { get; set; }
         [DataMember]public string adress { get; set; }
         [DataMember]public string name { get; set; }
         [DataMember]public string age { get; set; }
         [DataMember]public string characteristics { get; set; }
-        [DataMember]public List<Picture> pics { get; set; }
+        [DataMember]public List<string> pics
+        {
+            get
+            {
+                if (_pics == null)
+                {
+                    _pics = new List<string>();
+                }
+                return _pics;
+            }
+            set
+            {
+                _pics = value;
+            }
+        }
     }
 }

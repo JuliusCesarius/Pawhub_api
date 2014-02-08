@@ -99,7 +99,27 @@ namespace blastic.pawhub.api.Controllers
                     }
                     //var fileContent = provider.GetStream(provider.Contents.First(), provider.Contents.First().Headers);
                     temPath = fileData.LocalFileName;
-                    imageId = picturesService.Save(picType, id, fileData.LocalFileName, path);                    
+                    imageId = picturesService.Save(picType, id, fileData.LocalFileName, path); 
+                   
+                    //Adds the image to the corresponding document
+                    switch (picType)
+                    {
+                        //TODO:Implementar el codigo para los demás tipos
+                        case PicType.reports:
+                            using (var reportsService = new ReportsService())
+                            {
+                                var report = reportsService.GetById(id);
+                                if(string.IsNullOrEmpty(report.picture)){
+                                    report.picture = imageId;
+                                }else{
+                                    report.detail.pics.Add(imageId);
+                                }
+                                reportsService.Update(report);
+                            };
+                            break;
+                        case PicType.users:
+                            break;
+                    }
                 }
             }
             catch (System.Exception e)
