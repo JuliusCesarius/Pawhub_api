@@ -10,6 +10,6 @@ namespace blastic.pawhub.models.LostAndFound
         [DataMember]public string size { get; set; }
 
         [DataMember]public ContactInfo contactInfo { get; set; }
-        [DataMember]public List<Breed> breeds { get; set; }
+        [DataMember]public List<string> breeds { get; set; }
     }
 }

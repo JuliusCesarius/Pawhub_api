@@ -16,21 +16,29 @@ namespace Pawhub_API.Controllers
 {
     public class UsersController : ApiController
     {
-        // GET api/users
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        // GET api/users/5
-        public string Get(int id)
+ 
+        [HttpGet]
+        [NotImplementedExceptionFilter]
+        [Route("users/{id:regex(^[0-9a-fA-F]{24}$)}")]
+        public ResponseResult<User> Get(string id)
         {
-            return "value";
+            User user=null;
+            using (var usersService = new UsersService())
+            {
+                user = usersService.GetById(id);
+            }
+
+            return new ResponseResult<User>
+            {
+                Messages = new List<string>() { "OK" },
+                Result = user,
+                Succeed = true
+            };
         }
 
-        // POST api/users
-        [System.Web.Http.AcceptVerbs("POST")]
+        [HttpPost]
         [NotImplementedExceptionFilter]
+        [Route("users")]
         public ResponseResult<User> Post([FromBody] User value)
         {
             using (var usersService = new UsersService())
@@ -46,14 +54,22 @@ namespace Pawhub_API.Controllers
             };
         }
 
-        // PUT api/users/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        [NotImplementedExceptionFilter]
+        [Route("users")]
+        public ResponseResult<User> Put([FromBody] User value)
         {
-        }
+            using (var usersService = new UsersService())
+            {
+                usersService.Update(value);
+            }
 
-        //// DELETE api/users/5
-        //public void Delete(int id)
-        //{
-        //}
+            return new ResponseResult<User>
+            {
+                Messages = new List<string>() { "OK" },
+                Result = value,
+                Succeed = true
+            };
+        }
     }
 }

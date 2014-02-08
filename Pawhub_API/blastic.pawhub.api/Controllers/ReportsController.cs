@@ -46,13 +46,19 @@ namespace Pawhub_API.Controllers
         /// <returns>Report object</returns>
         [HttpGet]
         [NotImplementedExceptionFilter]
-        [Route("lnf/reports/{id}")]
+        [Route("lnf/reports/{id:regex(^[0-9a-fA-F]{24}$)}")]
         public ResponseResult<Report> Get(string id)
         {
             using (var reportsService = new ReportsService())
-            {
+            {                
                 var report = reportsService.GetById(id);
-
+                //Verifica que el usuario exista. De ahí toma el userName para armar en el objeto
+                var user = new UsersService().GetById(report._userId);
+                if (user == null)
+                {
+                    throw new Exception("User report does not exist");
+                }
+                report.userName = user.uname;
                 return new ResponseResult<Report>
                 {
                     Messages = new List<string>() { "OK" },
@@ -109,7 +115,9 @@ namespace Pawhub_API.Controllers
         /// Update the information of the specified Report
         /// </summary>
         /// <returns>Succeed status</returns>
+        [HttpPut]
         [NotImplementedExceptionFilter]
+        [Route("lnf/reports/")]
         public ResponseResult<Report> Put(Report value)
         {
             Report report;
@@ -145,6 +153,8 @@ namespace Pawhub_API.Controllers
         /// Delete the specified Report
         /// </summary>
         /// <returns>Succeed status</returns>
+        [HttpDelete]
+        [Route("lnf/reports/{id:regex(^[0-9a-fA-F]{24}$)}")]
         [NotImplementedExceptionFilter]
         public ResponseResult<bool> Delete(string id)
         {
@@ -218,6 +228,10 @@ namespace Pawhub_API.Controllers
         public ResponseResult<Comment> Comment(string id, [FromBody]Comment comment)
         {
             Comment result;
+            if (comment == null || string.IsNullOrWhiteSpace(comment._userId) || string.IsNullOrWhiteSpace(comment.content))
+            {
+                throw new Exception("Information incompleted");
+            }
             using (var reportsService = new ReportsService())
             {
                 result = reportsService.Comment(id, comment);

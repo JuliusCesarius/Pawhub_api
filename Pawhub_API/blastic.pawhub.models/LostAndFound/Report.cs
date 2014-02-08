@@ -19,6 +19,8 @@ namespace blastic.pawhub.models.LostAndFound
         [DataMember]public string _id { get; set; }
         [BsonRepresentation(BsonType.ObjectId)]
         [DataMember]public String _userId { get; set; }
+        
+        [DataMember][BsonIgnore]public String userName { get; set; }
 
         [DataMember]public int kind { get; set; }
         [DataMember]public string type
