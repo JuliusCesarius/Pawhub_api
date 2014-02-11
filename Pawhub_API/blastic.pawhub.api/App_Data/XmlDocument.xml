@@ -438,5 +438,14 @@
             </summary>
             <returns>Collection of Reports</returns>
         </member>
+        <member name="M:blastic.pawhub.api.Models.Helpers.PushServiceHelper.SendGCMNotification(System.String,System.String,System.String)">
+            <summary>
+            Send a Google Cloud Message. Uses the GCM service and your provided api key.
+            </summary>
+            <param name="apiKey"></param>
+            <param name="postData"></param>
+            <param name="postDataContentType"></param>
+            <returns>The response string from the google servers</returns>
+        </member>
     </members>
 </doc>

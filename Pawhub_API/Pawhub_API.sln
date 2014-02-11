@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blastic.pawhub.service", "b
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blastic.pawhub.api", "blastic.pawhub.api\blastic.pawhub.api.csproj", "{629F6D0F-44E5-4A4F-BDD2-839EE96DB468}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_UnitTest", "00_UnitTest", "{5D3E57E1-FAFA-4748-8EF8-D3A8E18E09B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blastic.pawhub.specs", "blastic.pawhub.specs\blastic.pawhub.specs.csproj", "{360322A2-9C30-41E2-8756-F882D7593702}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,10 @@ Global
 		{629F6D0F-44E5-4A4F-BDD2-839EE96DB468}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{629F6D0F-44E5-4A4F-BDD2-839EE96DB468}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{629F6D0F-44E5-4A4F-BDD2-839EE96DB468}.Release|Any CPU.Build.0 = Release|Any CPU
+		{360322A2-9C30-41E2-8756-F882D7593702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{360322A2-9C30-41E2-8756-F882D7593702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{360322A2-9C30-41E2-8756-F882D7593702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{360322A2-9C30-41E2-8756-F882D7593702}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,5 +83,6 @@ Global
 		{A94B203A-B7D3-418B-ABBA-FF55690B5DAB} = {E5DBE5A1-4FAB-46D8-9C67-BF6D69A4838A}
 		{7A5C12DB-6113-428C-965D-A93171019007} = {E5DBE5A1-4FAB-46D8-9C67-BF6D69A4838A}
 		{B4DC0C47-93F5-41D9-9150-86FE38DCFA68} = {2FCD5F40-953D-47DC-9F59-E32CA3B110A3}
+		{360322A2-9C30-41E2-8756-F882D7593702} = {5D3E57E1-FAFA-4748-8EF8-D3A8E18E09B7}
 	EndGlobalSection
 EndGlobal

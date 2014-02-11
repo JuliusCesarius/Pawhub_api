@@ -75,8 +75,7 @@ namespace blastic.pawhub.repositories
             var updateBuilder = new UpdateBuilder<Report>();
             updateBuilder.AddToSet(x => x.viewedBy,userId);
 
-            var query = Query<Report>.EQ(x => x._id, id);
-
+            var query = Query<Report>.EQ(x => x._id, id);            
             return Update(updateBuilder, query);
         }
         

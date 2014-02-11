@@ -13,6 +13,8 @@ using AutoMapper;
 using Pawhub_API.Models.Filters;
 using blastic.pawhub.service.core;
 using blastic.pawhub.models;
+using blastic.pawhub.api.Models.Helpers;
+using System.Configuration;
 
 namespace Pawhub_API.Controllers
 {
@@ -25,18 +27,13 @@ namespace Pawhub_API.Controllers
         [HttpGet]
         [NotImplementedExceptionFilter]
         [Route("lnf/reports")]
-        public ResponseResult<IEnumerable<Report>> Get()
+        public IHttpActionResult Get()
         {
             using (var reportsService = new ReportsService())
             {
                 var reports = reportsService.Get(null, -1, 0);
 
-                return new ResponseResult<IEnumerable<Report>>
-                {
-                    Messages = new List<string>() { "OK" },
-                    Result = reports,
-                    Succeed = true
-                };
+                return Ok(reports);
             }
         }
 
@@ -47,10 +44,10 @@ namespace Pawhub_API.Controllers
         [HttpGet]
         [NotImplementedExceptionFilter]
         [Route("lnf/reports/{id:regex(^[0-9a-fA-F]{24}$)}")]
-        public ResponseResult<Report> Get(string id)
+        public IHttpActionResult Get(string id)
         {
             using (var reportsService = new ReportsService())
-            {                
+            {
                 var report = reportsService.GetById(id);
                 //Verifica que el usuario exista. De ahí toma el userName para armar en el objeto
                 var user = new UsersService().GetById(report._userId);
@@ -59,12 +56,7 @@ namespace Pawhub_API.Controllers
                     throw new Exception("User report does not exist");
                 }
                 report.userName = user.uname;
-                return new ResponseResult<Report>
-                {
-                    Messages = new List<string>() { "OK" },
-                    Result = report,
-                    Succeed = true
-                };
+                return Ok(report);
             }
         }
 
@@ -73,7 +65,7 @@ namespace Pawhub_API.Controllers
         /// </summary>
         /// <returns>Collection of Reports</returns>
         [NotImplementedExceptionFilter]
-        public ResponseResult<IEnumerable<Report>> Get(int pageNumber)
+        public IHttpActionResult Get(int pageNumber)
         {
             IEnumerable<Report> reports = null;
             using (var reportsService = new ReportsService())
@@ -81,12 +73,7 @@ namespace Pawhub_API.Controllers
                 //TODO parametrizar el pageSize
                 reports = reportsService.Get(null, pageNumber, 20);
             }
-            return new ResponseResult<IEnumerable<Report>>
-            {
-                Messages = new List<string>() { "OK" },
-                Result = reports,
-                Succeed = true
-            };
+            return Ok(reports);
         }
 
         /// <summary>
@@ -96,19 +83,14 @@ namespace Pawhub_API.Controllers
         [HttpPost]
         [NotImplementedExceptionFilter]
         [Route("lnf/reports/")]
-        public ResponseResult<Report> Post([FromBody] Report value)
+        public IHttpActionResult Post([FromBody] Report value)
         {
             using (var reportsService = new ReportsService())
             {
                 reportsService.Save((Report)value);
             }
 
-            return new ResponseResult<Report>
-            {
-                Messages = new List<string>() { "OK" },
-                Result = value,
-                Succeed = true
-            };
+            return Ok((Report)value);
         }
 
         /// <summary>
@@ -118,7 +100,7 @@ namespace Pawhub_API.Controllers
         [HttpPut]
         [NotImplementedExceptionFilter]
         [Route("lnf/reports/")]
-        public ResponseResult<Report> Put(Report value)
+        public IHttpActionResult Put(Report value)
         {
             Report report;
             var response = Request.CreateResponse<Report>(HttpStatusCode.Created, value);
@@ -129,21 +111,11 @@ namespace Pawhub_API.Controllers
                 {
                     report = Mapper.Map(value, report);
                     reportsService.Update(report);
-                    return new ResponseResult<Report>
-                    {
-                        Messages = new List<string>() { "OK" },
-                        Result = report,
-                        Succeed = true
-                    };
+                    return Ok(report);
                 }
                 else
                 {
-                    return new ResponseResult<Report>
-                    {
-                        Result = value,
-                        Succeed = false,
-                        Errors = new List<string>() { "Report could not be found" }
-                    };
+                    return BadRequest("Report could not be found");
                 }
             }
 
@@ -156,7 +128,7 @@ namespace Pawhub_API.Controllers
         [HttpDelete]
         [Route("lnf/reports/{id:regex(^[0-9a-fA-F]{24}$)}")]
         [NotImplementedExceptionFilter]
-        public ResponseResult<bool> Delete(string id)
+        public IHttpActionResult Delete(string id)
         {
             bool succeed;
             using (var reportsService = new ReportsService())
@@ -164,12 +136,7 @@ namespace Pawhub_API.Controllers
                 succeed = reportsService.Delete(id);
             }
 
-            return new ResponseResult<bool>
-            {
-                Messages = new List<string>() { "OK" },
-                Result = succeed,
-                Succeed = succeed
-            };
+            return Ok(succeed);
         }
 
         /// <summary>
@@ -179,7 +146,7 @@ namespace Pawhub_API.Controllers
         [HttpGet]
         [Route("lnf/{controller}/{type}")]
         [NotImplementedExceptionFilter]
-        public ResponseResult<IEnumerable<Report>> ReportsType(string type)
+        public IHttpActionResult ReportsType(string type)
         {
             return ReportsType(type, 0);
         }
@@ -187,26 +154,21 @@ namespace Pawhub_API.Controllers
         [HttpGet]
         [NotImplementedExceptionFilter]
         [Route("lnf/reports/{type}/page/{pageNumber:int:min(1)?}")]
-        public ResponseResult<IEnumerable<Report>> ReportsType(string type, int pageNumber)
+        public IHttpActionResult ReportsType(string type, int pageNumber)
         {
             using (var reportsService = new ReportsService())
             {
                 //TODO Parametrizar el pageSize
                 var reports = reportsService.Get(type, pageNumber, 20);
 
-                return new ResponseResult<IEnumerable<Report>>
-                {
-                    Messages = new List<string>() { "OK" },
-                    Result = reports,
-                    Succeed = true
-                };
+                return Ok(reports);
             }
         }
 
         [HttpGet]
         [NotImplementedExceptionFilter]
         [Route("lnf/reports/user/{id}/{pageNumber:int:min(1)?}")]
-        public ResponseResult<IEnumerable<Report>> GetByUserId(string id, int pageNumber=1)
+        public IHttpActionResult GetByUserId(string id, int pageNumber = 1)
         {
             
             IEnumerable<Report> reports;
@@ -215,17 +177,13 @@ namespace Pawhub_API.Controllers
                 reports = reportsService.GetByUserId(id, pageNumber);
             }
 
-            return new ResponseResult<IEnumerable<Report>>
-            {
-                Result = reports,
-                Succeed = true
-            };
+            return Ok(reports);
         }
 
         [HttpPost]
         [NotImplementedExceptionFilter]
         [Route("lnf/reports/comment/{id}")]
-        public ResponseResult<Comment> Comment(string id, [FromBody]Comment comment)
+        public IHttpActionResult Comment(string id, [FromBody]Comment comment)
         {
             Comment result;
             if (comment == null || string.IsNullOrWhiteSpace(comment._userId) || string.IsNullOrWhiteSpace(comment.content))
@@ -238,17 +196,24 @@ namespace Pawhub_API.Controllers
                 comment.date = DateTime.UtcNow;
             }
 
-            return new ResponseResult<Comment>
+            //Perform push call
+            string deviceId = ConfigurationManager.AppSettings.Get("GCMApi");
+            if (string.IsNullOrEmpty(deviceId)) { return InternalServerError(new  Exception("No GCMApi configured")); }
+
+            var data = new
             {
-                Result = result,
-                Succeed = true
+                registration_ids = new string[] { "001122334455" },
+                data = result
             };
+            string response = new PushServiceHelper().SendGCMNotification(deviceId, Newtonsoft.Json.JsonConvert.SerializeObject(data));
+            
+            return Ok(result);
         }
 
         [HttpPost]
         [NotImplementedExceptionFilter]
         [Route("lnf/reports/setAlert/{id}")]
-        public ResponseResult<UserAlert> SetAlert(string id, [FromBody]UserAlert userAlert)
+        public IHttpActionResult SetAlert(string id, [FromBody]UserAlert userAlert)
         {
             UserAlert result;
 
@@ -257,17 +222,13 @@ namespace Pawhub_API.Controllers
                 result = reportsService.SetAlert(id, userAlert);
             }
 
-            return new ResponseResult<UserAlert>
-            {
-                Result = result,
-                Succeed = true
-            };
+            return Ok(userAlert);
         }
 
         [HttpPost]
         [NotImplementedExceptionFilter]
         [Route("lnf/reports/setViewed/{id}")]
-        public ResponseResult<long> SetViewed(string id, [FromBody]string userId)
+        public IHttpActionResult SetViewed(string id, [FromBody]string userId)
         {
             long result;
 
@@ -276,11 +237,7 @@ namespace Pawhub_API.Controllers
                 result = reportsService.SetView(id, userId);
             }
 
-            return new ResponseResult<long>
-            {
-                Result = result,
-                Succeed = true
-            };
+            return Ok(result);
         }
 
         public void Dispose()

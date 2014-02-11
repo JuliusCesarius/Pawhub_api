@@ -105,5 +105,8 @@ namespace blastic.pawhub.models.LostAndFound
         [DataMember][BsonIgnore]public Lost lost { get; set; }
         [DataMember][BsonIgnore]public Found found { get; set; }
         [DataMember][BsonIgnore]public Abuse abuse { get; set; }
+
+        [BsonExtraElements]public BsonDocument CatchAll { get; set; }
+
     }
 }

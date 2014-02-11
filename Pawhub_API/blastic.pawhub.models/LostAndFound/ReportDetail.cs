@@ -17,7 +17,7 @@ namespace blastic.pawhub.models.LostAndFound
 
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         [DataMember]public DateTime? date { get; set; }
-        [DataMember]public string adress { get; set; }
+        [DataMember]public string address { get; set; }
         [DataMember]public string name { get; set; }
         [DataMember]public string age { get; set; }
         [DataMember]public string characteristics { get; set; }
@@ -36,5 +36,7 @@ namespace blastic.pawhub.models.LostAndFound
                 _pics = value;
             }
         }
+
+        [BsonExtraElements]public BsonDocument CatchAll { get; set; }
     }
 }

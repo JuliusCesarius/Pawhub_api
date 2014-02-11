@@ -6,6 +6,16 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script type='text/javascript'>
+        //<![CDATA[
+        (function () {
+            var s = document.createElement('script');
+            s.type = 'text/javascript'; s.async = true;
+            s.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+            '://evolucionamovil.groovehq.com/widgets/84fa47e0-bdd2-4b0e-aa61-c67eac9cc99d/ticket.js'; var q = document.getElementsByTagName('script')[0]; q.parentNode.insertBefore(s, q);
+        })();
+        //]]>
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">

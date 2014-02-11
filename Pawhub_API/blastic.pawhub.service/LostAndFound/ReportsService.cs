@@ -24,6 +24,11 @@ namespace blastic.pawhub.service.core
             }
         }
 
+        public IEnumerable<Report> GetAll()
+        {
+            return repository.ListAll();
+        }
+
         public IEnumerable<Report> Get(string type, int? pageNumber, int pageSize)
         {
             pageSize = pageSize > 0 ? pageSize : 20;
@@ -133,6 +138,16 @@ namespace blastic.pawhub.service.core
             {
                 return -1;
             }
+        }
+
+        public long Upgrade(string collectionName, string oldFieldName, string newFieldName)
+        {
+            return repository.Upgrade(collectionName, oldFieldName, newFieldName);
+        }
+
+        public void DropCollection()
+        {
+            repository.DropCollection();
         }
     }
 }
