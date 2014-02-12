@@ -12,6 +12,8 @@ Pawhub_API/Pawhub_API/bin/
 Pawhub_API/blastic.pawhub.api/data/
 Pawhub_API/blastic.pawhub.api/obj/
 Pawhub_API/blastic.pawhub.api/bin/
+Pawhub_API/blastic.pashub.api/bin/*
+Pawhub_API\blastic.pashub.api\bin\
 Pawhub_API/packages/
 Pawhub_API/blastic.pawhub.specs/data/
 Pawhub_API/blastic.pawhub.specs/obj/
