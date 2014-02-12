@@ -43,22 +43,7 @@ namespace blastic.pawhub.api
             BsonClassMap.RegisterClassMap<Abuse>();
             BsonClassMap.RegisterClassMap<Found>();
             BsonClassMap.RegisterClassMap<Lost>();
-            BsonClassMap.RegisterClassMap<Resque>();
-            BsonClassMap.RegisterClassMap<ReportDetail>(cm =>
-            {
-                cm.AutoMap();
-                cm.SetExtraElementsMember(cm.GetMemberMap(c => c.CatchAll));
-            });
-            BsonClassMap.RegisterClassMap<Report>(cm =>
-            {
-                cm.AutoMap();
-                cm.SetExtraElementsMember(cm.GetMemberMap(c => c.CatchAll));
-            });
-            BsonClassMap.RegisterClassMap<ContactInfo>(cm =>
-            {
-                cm.AutoMap();
-                cm.SetExtraElementsMember(cm.GetMemberMap(c => c.CatchAll));
-            });
+            BsonClassMap.RegisterClassMap<Resque>();           
         }
     }
 }

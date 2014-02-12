@@ -149,5 +149,10 @@ namespace blastic.pawhub.service.core
         {
             repository.DropCollection();
         }
+
+        public string GetValidId()
+        {
+            return repository.GetValidId();
+        }
     }
 }

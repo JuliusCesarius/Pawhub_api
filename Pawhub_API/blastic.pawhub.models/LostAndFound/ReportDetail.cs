@@ -36,7 +36,5 @@ namespace blastic.pawhub.models.LostAndFound
                 _pics = value;
             }
         }
-
-        [BsonExtraElements]public BsonDocument CatchAll { get; set; }
     }
 }

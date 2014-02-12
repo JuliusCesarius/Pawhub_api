@@ -45,12 +45,20 @@
     </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.1\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Primitives">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net45\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.Http, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.1.1\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.1.1\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -73,9 +81,21 @@
       <Project>{e0ba806c-3364-48ac-887f-2df7ce2bd69e}</Project>
       <Name>blastic.mongodb</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\PawHub_core\blastic.patterns\blastic.patterns.csproj">
+      <Project>{6d7c7a8e-0ec7-4aa5-a5ec-2b73613dd90c}</Project>
+      <Name>blastic.patterns</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\blastic.pawhub.api\blastic.pawhub.api.csproj">
+      <Project>{629f6d0f-44e5-4a4f-bdd2-839ee96db468}</Project>
+      <Name>blastic.pawhub.api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\blastic.pawhub.models\blastic.pawhub.models.csproj">
       <Project>{9e20ca26-56e4-485b-810a-e7e4d385b78a}</Project>
       <Name>blastic.pawhub.models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\blastic.pawhub.repositories\blastic.pawhub.repositories.csproj">
+      <Project>{b4dc0c47-93f5-41d9-9150-86fe38dcfa68}</Project>
+      <Name>blastic.pawhub.repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\blastic.pawhub.service.operations\blastic.pawhub.service.operations.csproj">
       <Project>{a94b203a-b7d3-418b-abba-ff55690b5dab}</Project>

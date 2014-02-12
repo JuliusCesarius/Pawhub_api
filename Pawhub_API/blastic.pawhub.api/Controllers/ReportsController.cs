@@ -49,12 +49,10 @@ namespace Pawhub_API.Controllers
             using (var reportsService = new ReportsService())
             {
                 var report = reportsService.GetById(id);
+                if (report == null) throw new Exception("Report does not exist");
                 //Verifica que el usuario exista. De ahí toma el userName para armar en el objeto
                 var user = new UsersService().GetById(report._userId);
-                if (user == null)
-                {
-                    throw new Exception("User report does not exist");
-                }
+                if (user == null) throw new Exception("User report does not exist");
                 report.userName = user.uname;
                 return Ok(report);
             }
@@ -85,8 +83,13 @@ namespace Pawhub_API.Controllers
         [Route("lnf/reports/")]
         public IHttpActionResult Post([FromBody] Report value)
         {
+            if (value.detail == null)
+            {
+                return BadRequest("Report Detail not supplied");
+            }
             using (var reportsService = new ReportsService())
             {
+                value._id = null;
                 reportsService.Save((Report)value);
             }
 
@@ -144,7 +147,7 @@ namespace Pawhub_API.Controllers
         /// </summary>
         /// <returns>Collection of Reports</returns>
         [HttpGet]
-        [Route("lnf/{controller}/{type}")]
+        [Route("lnf/reports/{type}")]
         [NotImplementedExceptionFilter]
         public IHttpActionResult ReportsType(string type)
         {
