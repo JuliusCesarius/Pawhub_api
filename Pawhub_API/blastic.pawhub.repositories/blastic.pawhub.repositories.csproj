@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KindRepository.cs" />
+    <Compile Include="PushDevicesRepository.cs" />
     <Compile Include="UserAlert.cs" />
     <Compile Include="PicturesRepository.cs" />
     <Compile Include="UsersRepository.cs" />

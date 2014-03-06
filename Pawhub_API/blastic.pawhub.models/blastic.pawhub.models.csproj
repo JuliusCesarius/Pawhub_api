@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\PushDevice.cs" />
     <Compile Include="Core\Session.cs" />
+    <Compile Include="Enums\DeviceOs.cs" />
     <Compile Include="Enums\PicSize.cs" />
     <Compile Include="Enums\ReportKind.cs" />
     <Compile Include="Enums\ActivityType.cs" />

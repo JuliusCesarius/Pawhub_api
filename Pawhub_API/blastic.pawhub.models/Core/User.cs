@@ -17,6 +17,8 @@ namespace blastic.pawhub.models
         public string email { get; set; }
         public string type { get; set; }
         public int petcoins { get; set; }
+        public short yob { get; set; }
+        public string country { get; set; }
 
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime date { get; set; }

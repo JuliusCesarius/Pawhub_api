@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\PushDevicesService.cs" />
     <Compile Include="Core\PicturesService.cs" />
     <Compile Include="Helpers\FileStreamHelper.cs" />
     <Compile Include="Helpers\ImagesHelper.cs" />
